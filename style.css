@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Orbitron", sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0d236e;
+}
+
+#game-container {
+  width: 800px;
+  height: 600px;
+  background-color: #0b0c2a;
+  position: relative;
+}
+
+#player {
+  width: 40px;
+  height: 40px;
+  background-color: #00ffff;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
