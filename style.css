@@ -8,14 +8,17 @@ body {
   font-family: "Orbitron", sans-serif;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   background-color: #0d236e;
+  position: relative;
 }
 
 #game-container {
   width: 800px;
-  height: 600px;
+  height: 500px;
   background-color: #0b0c2a;
   position: relative;
 }
@@ -25,7 +28,30 @@ body {
   height: 40px;
   background-color: #00ffff;
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 4px;
+  left: 0;
+  transition: left 0.1s ease;
+}
+
+#player:focus {
+  outline: none;
+  background-color: #0d236e;
+}
+
+#play-btn {
+  font-family: "Orbitron", sans-serif;
+  left: 0;
+  top: 2px;
+  background-color: #00ffff;
+  border: none;
+  padding: 5px 10px;
+  width: 800px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+
+#play-btn:hover {
+  letter-spacing: 20px;
 }
