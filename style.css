@@ -23,6 +23,16 @@ body {
   position: relative;
 }
 
+#game-container::after {
+  content: "";
+  width: 800px;
+  position: absolute;
+  height: 6px;
+  background-color: red;
+  top: 0;
+  z-index: 10;
+}
+
 #player {
   width: 40px;
   height: 40px;
@@ -55,3 +65,24 @@ body {
 #play-btn:hover {
   letter-spacing: 20px;
 }
+
+.enemy {
+  width: 40px;
+  height: 6px;
+  background-color: red;
+  position: absolute;
+  top: 0;
+  animation: fall 2s linear;
+  z-index: 5;
+}
+
+/* Enemy spawn animation */
+@keyframes fall {
+  from {
+    top: 0;
+  }
+  to {
+    top: 460px;
+  }
+}
+/* Enemy spawn animation */
