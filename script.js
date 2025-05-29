@@ -6,6 +6,7 @@ const play = document.querySelector("#play-btn");
 
 const moveStep = 40;
 const gameContainerWidth = gameContainer.offsetWidth;
+const gameContainerHeight = gameContainer.offsetHeight;
 const playerWidth = player.offsetWidth;
 
 let playerLeft = gameContainerWidth / 2 - playerWidth / 2; // start centered
@@ -60,7 +61,40 @@ play.addEventListener("click", () => {
   play.blur();
   if (!isGameRunning) {
     enemySpawner = setInterval(spawnEnemy, 1000);
+    // setInterval(stars, 100);
     isGameRunning = true;
   }
   play.textContent = "Playing";
 });
+
+function stars() {
+  let star = document.createElement("div");
+  star.classList.add("star");
+
+  const randomTop = Math.random() * gameContainerHeight;
+  const randomLeft = Math.random() * gameContainerWidth;
+
+  star.style.top = `${randomTop}px`;
+  star.style.left = `${randomLeft}px`;
+
+  const moveDistance = Math.random() * 400 + 100; // 100 to 500px
+  star.style.setProperty(
+    "--x",
+    `${Math.random() * moveDistance * 2 - moveDistance}px`
+  );
+  star.style.setProperty(
+    "--y",
+    `${Math.random() * moveDistance * 2 - moveDistance}px`
+  );
+
+  const moveDuration = Math.random() * 2 + 1; // 1 to 3 seconds
+  star.style.animationDuration = `${moveDuration}s`;
+
+  gameContainer.append(star);
+
+  star.addEventListener("animationend", () => {
+    star.remove();
+  });
+}
+
+setInterval(stars, 100);

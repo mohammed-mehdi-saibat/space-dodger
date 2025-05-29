@@ -19,7 +19,7 @@ body {
 #game-container {
   width: 800px;
   height: 500px;
-  background-color: #0b0c2a;
+  background-color: black;
   position: relative;
 }
 
@@ -41,6 +41,7 @@ body {
   bottom: 4px;
   left: 0;
   transition: left 0.1s ease;
+  z-index: 10;
 }
 
 #player:focus {
@@ -72,7 +73,7 @@ body {
   background-color: red;
   position: absolute;
   top: 0;
-  animation: fall 2s linear;
+  animation: fall 1.5s linear;
   z-index: 5;
 }
 
@@ -86,3 +87,20 @@ body {
   }
 }
 /* Enemy spawn animation */
+
+.star {
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  background-color: yellow;
+  border-radius: 50%;
+  animation: move 2s ease-in-out forwards;
+  transform-origin: top left;
+  z-index: 0;
+}
+
+@keyframes move {
+  to {
+    transform: translate((--x), (--y));
+  }
+}
