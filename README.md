@@ -44,3 +44,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 Built as a beginner-friendly project to practice web development fundamentals and game logic.  
 Enjoy dodging those asteroids!
+
+## Live Demo
+
+Check out the game here: [Space Dodger](https://mohammed-mehdi-saibat.github.io/space-dodger-/)
