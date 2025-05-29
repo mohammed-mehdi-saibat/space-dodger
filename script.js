@@ -4,6 +4,8 @@ const gameContainer = document.querySelector("#game-container");
 const player = document.querySelector("#player");
 const play = document.querySelector("#play-btn");
 const bgAudio = document.querySelector("#bg-audio");
+const body = document.body;
+const dev = document.querySelector(".dev");
 
 const moveStep = 40;
 const gameContainerWidth = gameContainer.offsetWidth;
@@ -12,6 +14,8 @@ const playerWidth = player.offsetWidth;
 
 let playerLeft = gameContainerWidth / 2 - playerWidth / 2; // start centered
 player.style.left = `${playerLeft}px`;
+
+//PLAYER MOVEMENT:
 
 player.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
@@ -34,37 +38,23 @@ player.addEventListener("keydown", (e) => {
 //ENEMIES ANIMATION:
 
 function spawnEnemy() {
-  const div = document.createElement("div");
-  div.classList.add("enemy");
-  gameContainer.append(div);
+  const enemy = document.createElement("div");
+  enemy.classList.add("enemy");
+  gameContainer.append(enemy);
 
   const enemyWidth = 40;
   const randomFall = Math.floor(
     Math.random() * (gameContainerWidth - enemyWidth)
   );
 
-  div.style.left = `${randomFall}px`;
+  enemy.style.left = `${randomFall}px`;
 
-  div.addEventListener("animationend", () => {
-    div.remove();
+  enemy.addEventListener("animationend", () => {
+    enemy.remove();
   });
 }
 
-let isGameRunning = false;
-let enemySpawner;
-
-play.addEventListener("click", () => {
-  player.focus();
-  play.blur();
-  bgAudio.play();
-
-  if (!isGameRunning) {
-    enemySpawner = setInterval(spawnEnemy, 150);
-    // setInterval(stars, 100);
-    isGameRunning = true;
-  }
-  play.textContent = "Playing";
-});
+//SPACE VIBES:
 
 function stars() {
   let star = document.createElement("div");
@@ -97,3 +87,52 @@ function stars() {
 }
 
 setInterval(stars, 100);
+
+// GAME OVER LOGIC / CHECK COLLISIONS
+
+function checkCollision() {
+  const enemies = document.querySelectorAll(".enemy");
+  const playerBox = player.getBoundingClientRect();
+
+  enemies.forEach((enemy) => {
+    const enemyBox = enemy.getBoundingClientRect();
+
+    const isColliding =
+      enemyBox.left < playerBox.right &&
+      enemyBox.right > playerBox.left &&
+      enemyBox.top < playerBox.bottom &&
+      enemyBox.bottom > playerBox.top;
+
+    if (isColliding) {
+      play.textContent = "Game Over! / Restart!";
+      play.style.backgroundColor = "red";
+      player.style.backgroundColor = "red";
+      player.textContent = "X";
+      body.style.backgroundColor = "black";
+      dev.style.color = "red";
+      play.addEventListener("click", () => {
+        window.location.reload();
+      });
+      clearInterval(enemySpawner); // stop spawning enemies
+      clearInterval(collisionChecker); // stop checking collisions
+      bgAudio.pause();
+    }
+  });
+}
+
+let isGameRunning = false;
+let enemySpawner;
+let collisionChecker;
+
+play.addEventListener("click", () => {
+  player.focus();
+  play.blur();
+  bgAudio.play();
+
+  if (!isGameRunning) {
+    enemySpawner = setInterval(spawnEnemy, 150);
+    collisionChecker = setInterval(checkCollision, 100);
+    isGameRunning = true;
+  }
+  play.textContent = "Playing";
+});
