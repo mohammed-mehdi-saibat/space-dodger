@@ -3,6 +3,7 @@
 const gameContainer = document.querySelector("#game-container");
 const player = document.querySelector("#player");
 const play = document.querySelector("#play-btn");
+const bgAudio = document.querySelector("#bg-audio");
 
 const moveStep = 40;
 const gameContainerWidth = gameContainer.offsetWidth;
@@ -44,10 +45,6 @@ function spawnEnemy() {
 
   div.style.left = `${randomFall}px`;
 
-  const enemyFallDelay = Math.random() * 2;
-
-  div.style.animationDelay = `${enemyFallDelay}s`;
-
   div.addEventListener("animationend", () => {
     div.remove();
   });
@@ -59,8 +56,10 @@ let enemySpawner;
 play.addEventListener("click", () => {
   player.focus();
   play.blur();
+  bgAudio.play();
+
   if (!isGameRunning) {
-    enemySpawner = setInterval(spawnEnemy, 1000);
+    enemySpawner = setInterval(spawnEnemy, 150);
     // setInterval(stars, 100);
     isGameRunning = true;
   }
