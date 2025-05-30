@@ -47,4 +47,4 @@ Enjoy dodging those asteroids!
 
 ## Live Demo
 
-Check out the game here: [Space Dodger](https://mohammed-mehdi-saibat.github.io/space-dodger-/)
+Check out the game here: [Space Dodger](https://mohammed-mehdi-saibat.github.io/space-dodger/)
