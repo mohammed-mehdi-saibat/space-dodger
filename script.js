@@ -4,6 +4,7 @@ const gameContainer = document.querySelector("#game-container");
 const player = document.querySelector("#player");
 const play = document.querySelector("#play-btn");
 const bgAudio = document.querySelector("#bg-audio");
+const defaultAudio = document.querySelector("#default-audio");
 const gameOverAudio = document.querySelector("#game-over-audio");
 const body = document.body;
 const dev = document.querySelector(".dev");
@@ -115,11 +116,13 @@ function checkCollision() {
       dev.style.color = "red";
       play.addEventListener("click", () => {
         window.location.reload();
+        defaultAudio.play();
       });
       clearInterval(enemySpawner); // stop spawning enemies
       clearInterval(collisionChecker); // stop checking collisions
       bgAudio.pause();
       gameOverAudio.play();
+      defaultAudio.play();
     }
   });
 }
@@ -131,6 +134,7 @@ let collisionChecker;
 play.addEventListener("click", () => {
   player.focus();
   play.blur();
+  defaultAudio.pause();
   bgAudio.play();
 
   if (!isGameRunning) {
