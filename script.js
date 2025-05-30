@@ -4,6 +4,7 @@ const gameContainer = document.querySelector("#game-container");
 const player = document.querySelector("#player");
 const play = document.querySelector("#play-btn");
 const bgAudio = document.querySelector("#bg-audio");
+const gameOverAudio = document.querySelector("#game-over-audio");
 const body = document.body;
 const dev = document.querySelector(".dev");
 
@@ -118,6 +119,7 @@ function checkCollision() {
       clearInterval(enemySpawner); // stop spawning enemies
       clearInterval(collisionChecker); // stop checking collisions
       bgAudio.pause();
+      gameOverAudio.play();
     }
   });
 }
