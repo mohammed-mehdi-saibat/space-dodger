@@ -17,7 +17,7 @@ player.style.left = `${playerLeft}px`;
 
 //PLAYER MOVEMENT:
 
-player.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
     e.preventDefault();
   }
@@ -42,15 +42,17 @@ function spawnEnemy() {
   enemy.classList.add("enemy");
   gameContainer.append(enemy);
 
-  const enemyWidth = 40;
-  const randomFall = Math.floor(
-    Math.random() * (gameContainerWidth - enemyWidth)
-  );
+  requestAnimationFrame(() => {
+    const enemyWidth = enemy.offsetWidth;
+    const randomFall = Math.floor(
+      Math.random() * (gameContainerWidth - enemyWidth)
+    );
 
-  enemy.style.left = `${randomFall}px`;
+    enemy.style.left = `${randomFall}px`;
 
-  enemy.addEventListener("animationend", () => {
-    enemy.remove();
+    enemy.addEventListener("animationend", () => {
+      enemy.remove();
+    });
   });
 }
 
