@@ -6,6 +6,7 @@ const play = document.querySelector("#play-btn");
 const bgAudio = document.querySelector("#bg-audio");
 const defaultAudio = document.querySelector("#default-audio");
 const gameOverAudio = document.querySelector("#game-over-audio");
+const gameOverAudio2 = document.querySelector("#game-over-audio2");
 const body = document.body;
 const dev = document.querySelector(".dev");
 
@@ -122,6 +123,7 @@ function checkCollision() {
       clearInterval(collisionChecker); // stop checking collisions
       bgAudio.pause();
       gameOverAudio.play();
+      gameOverAudio2.play();
       defaultAudio.play();
     }
   });
