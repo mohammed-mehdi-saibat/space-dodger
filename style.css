@@ -23,22 +23,11 @@ body {
   position: relative;
 }
 
-#game-container::after {
-  content: "";
-  width: 800px;
-  position: absolute;
-  height: 6px;
-  background-color: red;
-  top: 0;
-  z-index: 10;
-}
-
 #player {
   width: 40px;
   height: 40px;
-  background-color: #00ffff;
   position: absolute;
-  bottom: 4px;
+  bottom: 5px;
   left: 0;
   transition: left 0.1s ease;
   z-index: 10;
@@ -49,9 +38,12 @@ body {
   font-weight: 900;
 }
 
+#player #space-ship {
+  width: 70px;
+}
+
 #player:focus {
   outline: none;
-  background-color: #0d236e;
 }
 
 #play-btn {
@@ -74,12 +66,13 @@ body {
 
 .enemy {
   width: 40px;
-  height: 6px;
-  background-color: red;
+  height: 40px;
   position: absolute;
-  top: 0;
-  animation: fall 1.3s linear;
+  animation: fall 1.4s linear forwards;
   z-index: 5;
+  background-image: url(asteroid.png);
+  background-position: center;
+  background-size: contain;
 }
 
 /* Enemy spawn animation */
@@ -88,7 +81,7 @@ body {
     top: 0;
   }
   to {
-    top: 460px;
+    top: 400px;
   }
 }
 /* Enemy spawn animation */

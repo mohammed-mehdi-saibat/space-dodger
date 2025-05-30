@@ -111,8 +111,6 @@ function checkCollision() {
     if (isColliding) {
       play.textContent = "Game Over! / Restart!";
       play.style.backgroundColor = "red";
-      player.style.backgroundColor = "red";
-      player.textContent = "X";
       body.style.backgroundColor = "black";
       dev.style.color = "red";
       play.addEventListener("click", () => {
@@ -140,8 +138,8 @@ play.addEventListener("click", () => {
   bgAudio.play();
 
   if (!isGameRunning) {
-    enemySpawner = setInterval(spawnEnemy, 150);
     collisionChecker = setInterval(checkCollision, 100);
+    enemySpawner = setInterval(spawnEnemy, 180);
     isGameRunning = true;
   }
   play.textContent = "Playing";
