@@ -50,7 +50,6 @@ function spawnEnemy() {
     const randomFall = Math.floor(
       Math.random() * (gameContainerWidth - enemyWidth)
     );
-
     enemy.style.left = `${randomFall}px`;
 
     enemy.addEventListener("animationend", () => {
@@ -101,7 +100,6 @@ function checkCollision() {
 
   enemies.forEach((enemy) => {
     const enemyBox = enemy.getBoundingClientRect();
-
     const isColliding =
       enemyBox.left < playerBox.right &&
       enemyBox.right > playerBox.left &&
@@ -117,6 +115,8 @@ function checkCollision() {
         window.location.reload();
         defaultAudio.play();
       });
+
+      console.log("Collision!");
       clearInterval(enemySpawner); // stop spawning enemies
       clearInterval(collisionChecker); // stop checking collisions
       bgAudio.pause();
