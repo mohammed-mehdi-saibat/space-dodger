@@ -125,4 +125,8 @@ body {
   font-weight: 500;
   color: white;
   letter-spacing: 3px;
+  background-color: black;
+  margin-bottom: -10px;
+  padding-left: 10px;
+  padding-top: 10px;
 }
