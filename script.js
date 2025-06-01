@@ -9,6 +9,7 @@ const gameOverAudio = document.querySelector("#game-over-audio");
 const gameOverAudio2 = document.querySelector("#game-over-audio2");
 const body = document.body;
 const dev = document.querySelector(".dev");
+const gameScore = document.querySelector("#score");
 
 const moveStep = 40;
 const gameContainerWidth = gameContainer.offsetWidth;
@@ -111,14 +112,14 @@ function checkCollision() {
       play.style.backgroundColor = "red";
       body.style.backgroundColor = "black";
       dev.style.color = "red";
+      gameScore.style.color = "red";
       play.addEventListener("click", () => {
         window.location.reload();
         defaultAudio.play();
       });
-
-      console.log("Collision!");
       clearInterval(enemySpawner); // stop spawning enemies
       clearInterval(collisionChecker); // stop checking collisions
+      clearInterval(scoreInterval);
       bgAudio.pause();
       gameOverAudio.play();
       gameOverAudio2.play();
@@ -131,6 +132,12 @@ let isGameRunning = false;
 let enemySpawner;
 let collisionChecker;
 
+//SCORE COUNT:
+
+let scoreCount = 0;
+let scoreInterval;
+
+//START GAME:
 play.addEventListener("click", () => {
   player.focus();
   play.blur();
@@ -141,6 +148,11 @@ play.addEventListener("click", () => {
     collisionChecker = setInterval(checkCollision, 100);
     enemySpawner = setInterval(spawnEnemy, 180);
     isGameRunning = true;
+    scoreInterval = setInterval(() => {
+      scoreCount++;
+      gameScore.textContent = `score: ${scoreCount}`;
+    }, 10);
   }
+
   play.textContent = "Playing";
 });
