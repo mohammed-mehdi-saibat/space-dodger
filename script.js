@@ -146,7 +146,7 @@ play.addEventListener("click", () => {
 
   if (!isGameRunning) {
     collisionChecker = setInterval(checkCollision, 100);
-    enemySpawner = setInterval(spawnEnemy, 180);
+    enemySpawner = setInterval(spawnEnemy, 140);
     isGameRunning = true;
     scoreInterval = setInterval(() => {
       scoreCount++;
