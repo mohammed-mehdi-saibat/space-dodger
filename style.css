@@ -21,6 +21,7 @@ body {
   height: 500px;
   background-color: black;
   position: relative;
+  overflow: hidden;
 }
 
 #player {
@@ -29,7 +30,7 @@ body {
   position: absolute;
   bottom: 5px;
   left: 0;
-  transition: left 0.1s ease;
+  transition: left 0.1s ease-in-out;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -93,14 +94,14 @@ body {
   position: absolute;
   background-color: yellow;
   border-radius: 50%;
-  animation: move 1.2s ease-in-out forwards;
+  animation: move 0.1s ease-in-out forwards;
   transform-origin: top left;
   z-index: 0;
 }
 
 @keyframes move {
   to {
-    transform: translate((--x), (--y));
+    transform: translate(var(--x), var(--y));
   }
 }
 

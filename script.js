@@ -51,7 +51,9 @@ function spawnEnemy() {
     const randomFall = Math.floor(
       Math.random() * (gameContainerWidth - enemyWidth)
     );
+    enemy.style.top = "-100px";
     enemy.style.left = `${randomFall}px`;
+    enemy.style.animationDelay = "2s";
 
     enemy.addEventListener("animationend", () => {
       enemy.remove();
@@ -71,7 +73,7 @@ function stars() {
   star.style.top = `${randomTop}px`;
   star.style.left = `${randomLeft}px`;
 
-  const moveDistance = Math.random() * 400 + 100; // 100 to 500px
+  const moveDistance = Math.random() * 400 + 100;
   star.style.setProperty(
     "--x",
     `${Math.random() * moveDistance * 2 - moveDistance}px`
@@ -81,7 +83,7 @@ function stars() {
     `${Math.random() * moveDistance * 2 - moveDistance}px`
   );
 
-  const moveDuration = Math.random() * 2 + 1; // 1 to 3 seconds
+  const moveDuration = Math.random() * 2 + 1;
   star.style.animationDuration = `${moveDuration}s`;
 
   gameContainer.append(star);
@@ -91,7 +93,7 @@ function stars() {
   });
 }
 
-setInterval(stars, 100);
+setInterval(stars, 50);
 
 // GAME OVER LOGIC / CHECK COLLISIONS
 
@@ -148,10 +150,13 @@ play.addEventListener("click", () => {
     collisionChecker = setInterval(checkCollision, 100);
     enemySpawner = setInterval(spawnEnemy, 140);
     isGameRunning = true;
-    scoreInterval = setInterval(() => {
-      scoreCount++;
-      gameScore.textContent = `score: ${scoreCount}`;
-    }, 10);
+
+    setTimeout(() => {
+      scoreInterval = setInterval(() => {
+        scoreCount++;
+        gameScore.textContent = `score: ${scoreCount}`;
+      }, 10);
+    }, 2000);
   }
 
   play.textContent = "Playing";
